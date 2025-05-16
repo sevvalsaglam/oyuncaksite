@@ -2,7 +2,6 @@
     position: relative;
     padding: 24px 16px;
     min-height: calc(100vh - 160px);
-    background-color: #fcfcfc;
     overflow: hidden;
   }
   .background-wrapper {

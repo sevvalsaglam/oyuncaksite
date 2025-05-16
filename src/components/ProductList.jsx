@@ -1,17 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchProducts } from '../features/product/productSlice';
 import ProductCard from './ProductCard';
 import './ProductList.css';
 
-const dummyProducts = [
-  { id: 1, name: 'Lego City', category: 'Blok Kitleri', price: 349.99, rating: 4.7, image: '/assets/products/lego1.png' },
-  { id: 2, name: 'Hayvanlar Puzzle', category: 'Puzzle Kitleri', price: 129.99, rating: 4.4, image: '/assets/products/puzzle1.png' },
-  { id: 3, name: 'Sesli Tren', category: 'Sesli Oyuncaklar', price: 199.99, rating: 4.6, image: '/assets/products/train.png' },
-];
-
 const ProductList = ({ type }) => {
+  const dispatch = useDispatch();
+  const { items, status, error } = useSelector((state) => state.products);
+
+  useEffect(() => {
+    if (status === 'idle') {
+      dispatch(fetchProducts());
+    }
+  }, [status, dispatch]);
+
+  const productsToShow = items.slice(0, 12); // Örnek: 12 ürün göster
+
+  if (status === 'loading') return <p>Ürünler yükleniyor...</p>;
+  if (status === 'failed') return <p>Hata: {error}</p>;
+
   return (
     <div className="product-grid">
-      {dummyProducts.map((product) => (
+      {productsToShow.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
     </div>

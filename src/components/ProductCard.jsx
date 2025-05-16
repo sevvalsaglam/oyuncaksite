@@ -4,6 +4,7 @@ import './ProductCard.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleFavorite } from '../features/favorite/favoriteSlice';
 
+
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.favorites.items);
