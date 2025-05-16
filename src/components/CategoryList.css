@@ -1,0 +1,26 @@
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 16px;
+    padding: 16px;
+  }
+  
+  .category-card {
+    background: #fff8f0;
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+  }
+  
+  .category-card img {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+  }
+  
+  .category-card:hover {
+    transform: scale(1.05);
+  }
+  

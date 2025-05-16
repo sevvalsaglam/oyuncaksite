@@ -1,0 +1,6 @@
+.main-container {
+    padding: 24px 16px;
+    min-height: calc(100vh - 160px); /* header + footer yüksekliği */
+    background-color: #fcfcfc;
+  }
+  
