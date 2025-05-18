@@ -1,19 +1,83 @@
 .product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 20px;
-    padding: 16px;
-  }
-  
-  .card-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 8px;
-  }
-  
-  .fav-icon {
-    cursor: pointer;
-    font-size: 18px;
-  }
-  
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 28px;
+  padding: 32px;
+  background-color: #f9f9f9;
+  align-items: stretch; 
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: white;
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+  min-height: 360px;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+.product-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  border-radius: 12px;
+  background-color: #f1f1f1;
+  padding: 8px;
+  margin-bottom: 12px;
+}
+
+/* Kart içeriği */
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  gap: 6px;
+}
+
+.card-body h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: #2d3436;
+}
+
+.card-body p {
+  font-size: 14px;
+  color: #636e72;
+  margin: 0;
+}
+
+/* Favori ve sepete ekle simgeleri */
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.fav-icon,
+.cart-icon {
+  cursor: pointer;
+  font-size: 20px;
+  padding: 6px;
+  border-radius: 50%;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.fav-icon:hover,
+.cart-icon:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  transform: scale(1.1);
+}

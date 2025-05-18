@@ -11,6 +11,7 @@ import Cart from './pages/Cart';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Educative from './pages/Educative';
+import CategoryPage from './pages/CategoryPage';
 
 const App = () => {
   
@@ -39,6 +40,7 @@ const App = () => {
       <main className="main-container">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/categories" element={<CategoryPage />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/cart" element={<Cart />} />

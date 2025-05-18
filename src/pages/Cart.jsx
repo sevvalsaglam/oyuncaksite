@@ -7,6 +7,7 @@ import {
   clearCart,
 } from '../features/cart/cartSlice';
 import './Cart.css';
+import { FiTrash } from 'react-icons/fi';
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -35,8 +36,10 @@ const Cart = () => {
             <button onClick={() => dispatch(increment(product.id))}>+</button>
           </div>
           <div className="remove">
-            <button onClick={() => dispatch(removeFromCart(product.id))}>🗑️</button>
-          </div>
+  <button onClick={() => dispatch(removeFromCart(product.id))}>
+    <FiTrash />
+  </button>
+</div>
         </div>
       ))}
 

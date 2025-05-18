@@ -1,92 +1,79 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
-import './ProductDetail.css';
-import ProductCard from '../components/ProductCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleFavorite } from '../features/favorite/favoriteSlice';
 import { addToCart } from '../features/cart/cartSlice';
-
-const mockProducts = [
-  {
-    id: '1',
-    name: 'Lego City',
-    category: 'Blok Kitleri',
-    price: 349.99,
-    rating: 4.7,
-    image: '/assets/products/lego1.png',
-    age: '6+',
-    material: 'Plastik',
-    description: 'Hayal gücünü geliştiren Lego City serisi.',
-  },
-  {
-    id: '2',
-    name: 'Hayvanlar Puzzle',
-    category: 'Puzzle Kitleri',
-    price: 129.99,
-    rating: 4.4,
-    image: '/assets/products/puzzle1.png',
-    age: '4+',
-    material: 'Mukavva',
-    description: 'Hayvanları öğrenirken eğlenin.',
-  },
-  // Diğer ürünler...
-];
+import ProductCard from '../components/ProductCard';
+import { AiFillHeart, AiOutlineHeart, AiFillStar } from 'react-icons/ai';
+import './ProductDetail.css';
+import { FiShoppingCart } from 'react-icons/fi';
 
 const ProductDetail = () => {
   const { id } = useParams();
-  const [product, setProduct] = useState(null);
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.products.items);
+  const favorites = useSelector((state) => state.favorites.items);
 
-  useEffect(() => {
-    const foundProduct = mockProducts.find((p) => p.id === id);
-    setProduct(foundProduct);
-  }, [id]);
+  const product = products.find((p) => p.id === parseInt(id));
+  if (!product) return <p>Ürün bulunamadı.</p>;
 
-  if (!product) return <div>Yükleniyor...</div>;
+  const isFavorite = favorites.some((f) => f.id === product.id);
 
-  const relatedProducts = mockProducts.filter(
+  const related = products.filter(
     (p) => p.category === product.category && p.id !== product.id
   );
 
-  const dispatch = useDispatch();
-const favorites = useSelector((state) => state.favorites.items);
-const isFavorite = favorites.some((item) => item.id === product.id);
+  const handleFavorite = () => {
+    dispatch(toggleFavorite(product));
+  };
 
-const handleFavorite = () => {
-  dispatch(toggleFavorite(product));
-};
-const handleAddToCart = () => {
+  const handleAddToCart = () => {
     dispatch(addToCart(product));
   };
 
+  const filledStars = Math.floor(product.rating);
+  const emptyStars = 5 - filledStars;
+
   return (
-    <div className="product-detail">
-      <div className="product-main">
+    <div className="product-detail-page">
+      <div className="product-detail-card">
         <img src={product.image} alt={product.name} />
         <div className="product-info">
-          <h1>{product.name}</h1>
-          <p><strong>Kategori:</strong> {product.category}</p>
-          <p><strong>Fiyat:</strong> {product.price.toFixed(2)} ₺</p>
-          <p><strong>Puan:</strong> ⭐ {product.rating}</p>
-          <p><strong>Yaş Grubu:</strong> {product.age}</p>
+          <h2>{product.name}</h2>
+          <p className="category">{product.category}</p>
+
+          <div className="rating-stars">
+            {[...Array(filledStars)].map((_, i) => (
+              <AiFillStar key={`full-${i}`} color="#feca57" />
+            ))}
+            {[...Array(emptyStars)].map((_, i) => (
+              <AiFillStar key={`empty-${i}`} color="#ccc" />
+            ))}
+            <span className="rating-text">({product.rating})</span>
+          </div>
+
+          <p className="price">{product.price.toFixed(2)} ₺</p>
+          <p className="desc">{product.description}</p>
+          <p><strong>Yaş Grubu:</strong> {product.age_range}</p>
           <p><strong>Materyal:</strong> {product.material}</p>
-          <p>{product.description}</p>
 
           <div className="actions">
           <button className="btn primary" onClick={handleAddToCart}>
+  <FiShoppingCart style={{ marginRight: '8px' }} />
   Sepete Ekle
 </button>
             <button className="btn secondary" onClick={handleFavorite}>
-  {isFavorite ? '❤️ Favoriden Çıkar' : '🤍 Favorilere Ekle'}
-</button>
+              {isFavorite ? <AiFillHeart color="red" /> : <AiOutlineHeart />} Favori
+            </button>
           </div>
         </div>
       </div>
 
-      {relatedProducts.length > 0 && (
-        <div className="related-products">
+      {related.length > 0 && (
+        <div className="related-section">
           <h3>Benzer Ürünler</h3>
           <div className="related-list">
-            {relatedProducts.map((p) => (
+            {related.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}
           </div>
