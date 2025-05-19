@@ -52,10 +52,11 @@ const ProductDetail = () => {
             <span className="rating-text">({product.rating})</span>
           </div>
 
-          <p className="price">{product.price.toFixed(2)} ₺</p>
+          
           <p className="desc">{product.description}</p>
           <p><strong>Yaş Grubu:</strong> {product.age_range}</p>
           <p><strong>Materyal:</strong> {product.material}</p>
+          <p className="price">{product.price.toFixed(2)} ₺</p>
 
           <div className="actions">
           <button className="btn primary" onClick={handleAddToCart}>

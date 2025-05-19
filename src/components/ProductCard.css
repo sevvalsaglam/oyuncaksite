@@ -1,72 +1,92 @@
 .product-card {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 0;
+  flex-direction: row;
+  gap: 20px;
+  border-radius: 16px;
+  padding: 20px;
+  background: #ffffff;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-decoration: none;
   color: inherit;
-  height: 100%;
-  transition: transform 0.2s ease;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: none; /* Kutudan kurtulduk */
+  align-items: center;
+  min-height: 220px;
 }
 
 .product-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
 }
 
 .product-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  display: block;
-  border-radius: 16px;
-  transition: transform 0.3s ease;
-}
-
-.product-card img:hover {
-  transform: scale(1.05);
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  border-radius: 12px;
+  flex-shrink: 0;
 }
 
 .card-body {
-  padding: 12px 6px 0;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.card-body .category {
+  font-size: 12px;
+  font-weight: 600;
+  color: #777;
+  text-transform: uppercase;
+  margin-bottom: 4px;
 }
 
 .card-body h4 {
-  font-size: 15px;
-  font-weight: 600;
-  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 8px;
   color: #2d3436;
 }
 
-.card-body p {
-  font-size: 13px;
-  color: #636e72;
-  margin: 0;
+.card-body .desc {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+.card-body .price {
+  font-size: 16px;
+  font-weight: bold;
+  color: #00b894;
+}
+
+.rating-stars {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 18px;
+  color: #feca57;
+  margin-bottom: 6px;
 }
 
 .card-actions {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 6px;
+  gap: 12px;
+  margin-top: 12px;
 }
 
-.fav-icon,
-.cart-icon {
+.card-actions button {
+  background-color: #f6f6f6;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14px;
   cursor: pointer;
-  font-size: 18px;
-  transition: transform 0.2s ease;
-  padding: 4px;
-  border-radius: 50%;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
-.fav-icon:hover,
-.cart-icon:hover {
-  transform: scale(1.2);
-  background-color: rgba(0, 0, 0, 0.05);
+.card-actions button:hover {
+  background-color: #ececec;
+  transform: scale(1.05);
 }
