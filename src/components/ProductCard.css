@@ -1,40 +1,72 @@
 .product-card {
-    text-decoration: none;
-    color: #333;
-    background: #f8ebe1;
-    padding: 12px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: transform 0.2s ease;
-    width:200px;
-  }
-  
-  .product-card img {
-    width: 100%;
-    height: 200px;
-    object-fit:cover;
-    border-radius: 8px;
-  }
-  
-  .card-body {
-    padding: 8px 0;
-  }
-  
-  .product-card:hover {
-    transform: scale(1.03);
-  }
-  
-  .card-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 8px;
-    gap: 12px;
-  }
-  
-  .fav-icon,
-  .cart-icon {
-    cursor: pointer;
-    font-size: 20px;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+  transition: transform 0.2s ease;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: none; /* Kutudan kurtulduk */
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+}
+
+.product-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  border-radius: 16px;
+  transition: transform 0.3s ease;
+}
+
+.product-card img:hover {
+  transform: scale(1.05);
+}
+
+.card-body {
+  padding: 12px 6px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.card-body h4 {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+  color: #2d3436;
+}
+
+.card-body p {
+  font-size: 13px;
+  color: #636e72;
+  margin: 0;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 6px;
+}
+
+.fav-icon,
+.cart-icon {
+  cursor: pointer;
+  font-size: 18px;
+  transition: transform 0.2s ease;
+  padding: 4px;
+  border-radius: 50%;
+}
+
+.fav-icon:hover,
+.cart-icon:hover {
+  transform: scale(1.2);
+  background-color: rgba(0, 0, 0, 0.05);
+}
