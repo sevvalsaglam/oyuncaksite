@@ -27,6 +27,7 @@ const Login = () => {
   return (
     <div className="auth-container">
       <h2>Giriş Yap</h2>
+      <img className="loginlogo" src='public/background/25.png'></img>
       <form onSubmit={handleLogin}>
         <input
           type="email"

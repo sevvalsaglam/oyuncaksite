@@ -42,7 +42,7 @@ const Banner = ({ type }) => {
           />
         ))}
         <div className="banner-content">
-          <h2>{isHero ? 'Haydi Oyun Zamanı!' : 'Yeni Sezon Oyuncaklar Geldi!'}</h2>
+          <h2>{isHero ? '' : ''}</h2>
         </div>
       </div>
     </div>

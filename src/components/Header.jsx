@@ -48,7 +48,7 @@ const Header = () => {
       </div>
 
       <button className="educative-button" onClick={handleEducativeClick}>
-        +3 🎈
+        🎈
       </button>
     </header>
   );

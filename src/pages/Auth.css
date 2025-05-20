@@ -68,3 +68,13 @@
   width: 20px;
   height: 20px;
 }
+
+.loginlogo{
+  height: 120px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin-left: 140px;
+  margin-right: 140px;
+}
