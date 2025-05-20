@@ -4,6 +4,8 @@ import './Header.css';
 import { FiSearch, FiShoppingCart, FiUser } from 'react-icons/fi';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { useSelector } from 'react-redux';
+import { AiOutlineHome, AiOutlineAppstore } from 'react-icons/ai';
+
 
 const Header = () => {
   const navigate = useNavigate();
@@ -35,6 +37,14 @@ const Header = () => {
       </div>
 
       <div className="header-right">
+      <div className="mobile-nav-icons">
+  <Link to="/" title="Ana Sayfa">
+    <AiOutlineHome />
+  </Link>
+  <Link to="/categories" title="Kategoriler">
+    <AiOutlineAppstore />
+  </Link>
+</div>
         <Link to="/favorites" title="Favoriler">
           <AiOutlineHeart />
         </Link>
