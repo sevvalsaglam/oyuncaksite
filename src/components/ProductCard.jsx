@@ -24,24 +24,22 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-
-      <Link to={`/product/${product.id}`} className="product-card">
-        <img src={product.image} alt={product.name} />
-        <div className="card-body">
-          <h4>{product.name}</h4>
-          <p>{product.category}</p>
-          <p>{product.price.toFixed(2)} ₺</p>
-          <div className="card-actions">
-            <span onClick={handleFavoriteClick} className="fav-icon">
-              {isFavorite ? <AiFillHeart color="red" /> : <AiOutlineHeart />}
-            </span>
-            <span onClick={handleAddToCart} className="cart-icon">
-              <FiShoppingCart />
-            </span>
-          </div>
+    <Link to={`/product/${product.id}`} className="product-card">
+      <img src={product.image} alt={product.name} />
+      <div className="card-body">
+        <h4>{product.name}</h4>
+        <p className="category">{product.category}</p>
+        <p className="price">{product.price.toFixed(2)} ₺</p>
+        <div className="card-actions">
+          <span onClick={handleFavoriteClick} className="fav-icon">
+            {isFavorite ? <AiFillHeart color="red" /> : <AiOutlineHeart />}
+          </span>
+          <span onClick={handleAddToCart} className="cart-icon">
+            <FiShoppingCart />
+          </span>
         </div>
-      </Link>
-    
+      </div>
+    </Link>
   );
 };
 

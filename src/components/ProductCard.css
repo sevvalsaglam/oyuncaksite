@@ -1,92 +1,99 @@
 .product-card {
   display: flex;
-  flex-direction: row;
-  gap: 20px;
+  flex-direction: column;
+  background-color: white;
   border-radius: 16px;
-  padding: 20px;
-  background: #ffffff;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   text-decoration: none;
   color: inherit;
-  align-items: center;
-  min-height: 220px;
-}
-
-.product-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  height: 100%;
+  overflow: hidden;
 }
 
 .product-card img {
-  width: 160px;
-  height: 160px;
+  width: 100%;
+  max-height: 200px;
   object-fit: contain;
-  border-radius: 12px;
-  flex-shrink: 0;
+  display: block;
+  background-color: #f8f8f8;
+  padding: 8px;
+  border-radius: 12px 12px 0 0;
 }
 
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+/* İçerik kısmı */
 .card-body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex: 1;
-}
-
-.card-body .category {
-  font-size: 12px;
-  font-weight: 600;
-  color: #777;
-  text-transform: uppercase;
-  margin-bottom: 4px;
+  padding: 12px;
+  flex-grow: 1;
+  gap: 8px;
 }
 
 .card-body h4 {
-  font-size: 20px;
-  font-weight: 700;
-  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 600;
   color: #2d3436;
+  margin: 0;
 }
 
-.card-body .desc {
+.card-body .category,
+.card-body p {
   font-size: 14px;
-  color: #555;
-  margin-bottom: 6px;
+  color: #666;
+  margin: 0;
 }
 
 .card-body .price {
-  font-size: 16px;
   font-weight: bold;
   color: #00b894;
 }
 
-.rating-stars {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  font-size: 18px;
-  color: #feca57;
-  margin-bottom: 6px;
-}
-
 .card-actions {
   display: flex;
-  gap: 12px;
-  margin-top: 12px;
+  justify-content: space-between;
+  margin-top: auto;
 }
 
-.card-actions button {
-  background-color: #f6f6f6;
-  border: none;
-  padding: 10px 14px;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 14px;
+.fav-icon,
+.cart-icon {
   cursor: pointer;
+  font-size: 20px;
+  padding: 6px;
+  border-radius: 50%;
   transition: background 0.2s ease, transform 0.2s ease;
 }
 
-.card-actions button:hover {
-  background-color: #ececec;
-  transform: scale(1.05);
+.fav-icon:hover,
+.cart-icon:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  transform: scale(1.1);
+}
+
+/* Mobil görünüm */
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .product-card img {
+    max-height: 140px;
+  }
+
+  .card-body h4 {
+    font-size: 14px;
+  }
+
+  .card-body .price {
+    font-size: 14px;
+  }
 }

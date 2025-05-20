@@ -1,32 +1,30 @@
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 24px;
+  gap: 28px 24px;
   padding: 32px;
-  justify-content: start; /* kartlar sola yaslanır */
-  align-items: stretch;
-  box-sizing: border-box;
   max-width: 1200px;
   margin: 0 auto;
+  box-sizing: border-box;
+
+  /* Satır hizasını sabitle */
+  align-items: start;
+  grid-auto-rows: 1fr;
 }
 
-/* Ürün kartı */
 .product-card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   background-color: white;
-  padding: 16px;
   border-radius: 16px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   text-decoration: none;
   color: inherit;
   height: 100%;
-  min-height: 360px;
+  overflow: hidden;
 }
 
-/* Hover efekti */
 .product-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
@@ -34,41 +32,46 @@
 
 .product-card img {
   width: 100%;
-  height: 180px;
+  max-height: 200px;
   object-fit: contain;
-  border-radius: 12px;
-  background-color: #f1f1f1;
+  display: block;
+  background-color: #f8f8f8;
   padding: 8px;
-  margin-bottom: 12px;
+  border-radius: 12px 12px 0 0;
 }
 
-/* Kart içeriği */
+/* İçerik kısmı */
 .card-body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 12px;
   flex-grow: 1;
-  gap: 6px;
+  gap: 8px;
 }
 
 .card-body h4 {
   font-size: 16px;
   font-weight: 600;
-  margin: 0;
   color: #2d3436;
+  margin: 0;
 }
 
+.card-body .category,
 .card-body p {
   font-size: 14px;
-  color: #636e72;
+  color: #666;
   margin: 0;
 }
 
-/* Favori ve sepet ikonları */
+.card-body .price {
+  font-weight: bold;
+  color: #00b894;
+}
+
 .card-actions {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   margin-top: auto;
 }
 
@@ -87,32 +90,23 @@
   transform: scale(1.1);
 }
 
-/* Mobil uyumluluk */
-@media (max-width: 600px) {
+/* Mobil görünüm */
+@media (max-width: 768px) {
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
-    padding: 16px;
     gap: 16px;
-  }
-
-  .product-card {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    padding: 16px;
   }
 
   .product-card img {
-    width: 100%;
-    max-width: 140px;
-    height: auto;
+    max-height: 140px;
   }
 
-  .card-actions {
-    flex-direction: column;
-    gap: 8px;
+  .card-body h4 {
+    font-size: 14px;
   }
 
-  .card-actions button {
-    width: 100%;
+  .card-body .price {
+    font-size: 14px;
   }
 }

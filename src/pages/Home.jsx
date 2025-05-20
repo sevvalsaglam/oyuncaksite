@@ -1,5 +1,5 @@
 import React from 'react';
-import CategoryList from '../components/CategoryList';
+import HomeCategoryList from '../components/HomeCategoryList'; // import et
 import ProductList from '../components/ProductList';
 import Banner from '../components/Banner';
 import './Home.css';
@@ -10,7 +10,7 @@ const Home = () => {
       <Banner type="hero" />
       <section>
         <h2>Kategoriler</h2>
-        <CategoryList />
+        <HomeCategoryList />
       </section>
       <section>
         <h2>Popüler Oyuncaklar</h2>
