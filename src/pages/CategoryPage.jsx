@@ -24,7 +24,6 @@ const CategoriesPage = () => {
 
   return (
     <div className="main-container">
-      <h2>Tüm Kategoriler</h2>
       <CategoryList />
       <div ref={productSectionRef}>
         <h3>{selectedCategory ? `"${selectedCategory}" kategorisindeki ürünler` : 'Tüm Ürünler'}</h3>

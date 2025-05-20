@@ -15,12 +15,20 @@
   }
   
   .category-card img {
-    width: 64px;
-    height: 64px;
+    width: 120px;
+    height: 120px;
     object-fit: contain;
   }
   
   .category-card:hover {
     transform: scale(1.05);
+  }
+  
+
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
   }
   
