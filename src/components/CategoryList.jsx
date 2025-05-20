@@ -7,17 +7,21 @@ const categories = [
   { id: 48, name: 'Blok Kitleri' },
   { id: 49, name: 'Kostümler' },
   { id: 50, name: 'Çadırlar' },
-  { id: 51, name: 'Araba Kitleri' },
+  { id: 51, name: 'Arabalar' },
   { id: 52, name: 'Oyun Hamuru' },
   { id: 53, name: 'Boyama Setleri' },
-  { id: 54, name: 'Sesli Oyuncaklar' },
-  { id: 55, name: 'Figürler' },
-  { id: 56, name: '0-3 Yaş Oyuncakları' },
-  { id: 57, name: 'Eğitici Kitaplar' },
-  { id: 58, name: 'Hayvan Figürleri' },
-  { id: 59, name: 'Bilim Setleri' },
-  { id: 60, name: 'Müzik Aletleri' },
-  { id: 61, name: 'Zeka Oyunları' },
+  { id: 54, name: 'Organik Örgü Figürler' },
+  { id: 55, name: '0-3 Yaş Oyuncakları' },
+  { id: 56, name: 'Eğitici Kitaplar' },
+  { id: 57, name: 'Minyatür Oyuncaklar' },
+  { id: 58, name: 'Mutfak Kiti' },
+  { id: 59, name: 'Sesli Oyuncaklar' },
+  { id: 60, name: 'Kum Kiti' },
+  { id: 61, name: 'Araçlar' },
+  { id: 62, name: 'Tasarım Kitleri' },
+  { id: 63, name: 'Düzenleyiciler' },
+  { id: 64, name: 'Müzik Aletleri' }
+
 ];
 
 const CategoryList = () => {
