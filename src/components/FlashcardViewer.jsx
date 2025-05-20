@@ -16,15 +16,12 @@ const FlashcardViewer = ({ deck, onClose }) => {
   return (
     <div className="flashcard-viewer">
       <button className="close-btn" onClick={onClose}>✖</button>
-
-      <div className="card">
-        <h2>{card.word}</h2>
+      <div className="card bounce-in">
         <div className="images">
-          <img src={card.image1} alt="1" />
-          {card.image2 && <img src={card.image2} alt="2" />}
+          <img src={card.image1} alt="Kelime" />
+          {card.image2 && <img src={card.image2} alt="İkincil" />}
         </div>
       </div>
-
       <div className="controls">
         <button onClick={prev} disabled={index === 0}>←</button>
         <button onClick={next} disabled={index === deck.cards.length - 1}>→</button>
