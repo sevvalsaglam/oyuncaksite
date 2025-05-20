@@ -1,11 +1,16 @@
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 28px;
+  gap: 24px;
   padding: 32px;
-  align-items: stretch; 
+  justify-content: start; /* kartlar sola yaslanır */
+  align-items: stretch;
+  box-sizing: border-box;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
+/* Ürün kartı */
 .product-card {
   display: flex;
   flex-direction: column;
@@ -21,6 +26,7 @@
   min-height: 360px;
 }
 
+/* Hover efekti */
 .product-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
@@ -58,7 +64,7 @@
   margin: 0;
 }
 
-/* Favori ve sepete ekle simgeleri */
+/* Favori ve sepet ikonları */
 .card-actions {
   display: flex;
   justify-content: space-between;
@@ -79,4 +85,34 @@
 .cart-icon:hover {
   background-color: rgba(0, 0, 0, 0.05);
   transform: scale(1.1);
+}
+
+/* Mobil uyumluluk */
+@media (max-width: 600px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .product-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .product-card img {
+    width: 100%;
+    max-width: 140px;
+    height: auto;
+  }
+
+  .card-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .card-actions button {
+    width: 100%;
+  }
 }

@@ -33,6 +33,7 @@ const ProductDetail = () => {
 
   const filledStars = Math.floor(product.rating);
   const emptyStars = 5 - filledStars;
+  
 
   return (
     <div className="product-detail-page">

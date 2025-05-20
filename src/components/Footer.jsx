@@ -1,12 +1,18 @@
 import React from 'react';
 import './Footer.css';
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaTwitter,
+  FaYoutube,
+} from 'react-icons/fa';
 
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-top">
-        <div className="footer-section">
-          <h3>Oyuncak Dünyası</h3>
+        <div className="footer-section logo-info">
+          <h3>🎈 Oyuncak Dünyası</h3>
           <p>Mutlu çocuklar için eğlenceli ve eğitici oyuncaklar</p>
         </div>
 
@@ -23,7 +29,7 @@ const Footer = () => {
         <div className="footer-section">
           <h4>Yardım</h4>
           <ul>
-            <li><a href="#">Sıkça Sorulan Sorular</a></li>
+            <li><a href="#">SSS</a></li>
             <li><a href="#">Kargo & Teslimat</a></li>
             <li><a href="#">İade & Değişim</a></li>
             <li><a href="#">Müşteri Hizmetleri</a></li>
@@ -33,10 +39,10 @@ const Footer = () => {
         <div className="footer-section">
           <h4>Bizi Takip Edin</h4>
           <div className="social-icons">
-            <a href="#"><span>📘</span></a>
-            <a href="#"><span>📸</span></a>
-            <a href="#"><span>🐦</span></a>
-            <a href="#"><span>▶️</span></a>
+            <a href="#"><FaFacebookF /></a>
+            <a href="#"><FaInstagram /></a>
+            <a href="#"><FaTwitter /></a>
+            <a href="#"><FaYoutube /></a>
           </div>
         </div>
       </div>

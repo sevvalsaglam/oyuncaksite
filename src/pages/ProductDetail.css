@@ -89,6 +89,13 @@
   background-color: #f1f2f6;
   color: #333;
 }
+.related-list {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  padding: 16px; 
+}
+
 
 
 @keyframes fadeIn {

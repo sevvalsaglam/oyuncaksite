@@ -14,16 +14,17 @@ const Cart = () => {
   const cartItems = useSelector(state => state.cart.items);
 
   const total = cartItems.reduce(
-    (sum, item) => sum + item.product.price * item.quantity,
+    (sum, item) => sum + (item.product?.price || 0) * item.quantity,
     0
   );
+  
 
   if (cartItems.length === 0) return <p>Sepetiniz boş.</p>;
 
   return (
     <div className="cart-container">
       <h2>Sepet</h2>
-      {cartItems.map(({ product, quantity }) => (
+      {cartItems.filter(item => item.product).map(({ product, quantity }) => (
         <div className="cart-item" key={product.id}>
           <img src={product.image} alt={product.name} />
           <div className="info">

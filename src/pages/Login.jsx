@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Auth.css';
+import googleLogo from '/icons/google.svg.png'; 
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -16,6 +17,11 @@ const Login = () => {
     // TODO: Backend entegrasyonu yapılacak
     console.log('Login:', { email, password });
     alert('Giriş başarılı (mock)');
+  };
+
+  const handleGoogleLogin = () => {
+    alert('Google ile giriş yapılacak (mock)');
+    // TODO: Google OAuth
   };
 
   return (
@@ -37,8 +43,9 @@ const Login = () => {
         <button type="submit" className="btn primary">Giriş Yap</button>
       </form>
 
-      <button className="btn secondary" onClick={() => alert('Google Giriş yapılacak')}>
-        Google ile Giriş Yap
+      <button className="btn google-btn" onClick={handleGoogleLogin}>
+        <img src={googleLogo} alt="Google" />
+        <span>Google ile Giriş Yap</span>
       </button>
 
       <p>

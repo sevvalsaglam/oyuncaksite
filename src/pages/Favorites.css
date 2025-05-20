@@ -1,0 +1,8 @@
+@import './ProductList.css'; 
+
+.favorites-page h2 {
+  font-size: 24px;
+  margin: 24px 0;
+  text-align: left;
+  color: #2d3436;
+}

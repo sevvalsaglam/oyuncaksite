@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+// localStorage'dan çek
+const storedFavorites = localStorage.getItem('favorites');
 const initialState = {
-  items: [], // ürün id'leri veya ürün nesneleri
+  items: storedFavorites ? JSON.parse(storedFavorites) : [],
 };
 
 const favoriteSlice = createSlice({
@@ -17,6 +19,8 @@ const favoriteSlice = createSlice({
       } else {
         state.items.push(action.payload);
       }
+
+      localStorage.setItem('favorites', JSON.stringify(state.items));
     },
   },
 });

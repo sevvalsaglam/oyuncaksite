@@ -1,5 +1,6 @@
 import React from 'react';
 import './CategoryList.css';
+import { useNavigate } from 'react-router-dom';
 
 const categories = [
   { id: 47, name: 'Puzzle Kitleri' },
@@ -20,10 +21,20 @@ const categories = [
 ];
 
 const CategoryList = () => {
+  const navigate = useNavigate();
+
+  const handleClick = (name) => {
+    navigate(`/categories?category=${encodeURIComponent(name)}`);
+  };
+
   return (
     <div className="category-grid">
       {categories.map((cat) => (
-        <div key={cat.id} className="category-card">
+        <div
+          key={cat.id}
+          className="category-card"
+          onClick={() => handleClick(cat.name)}
+        >
           <img src={`/categories/${cat.id}.png`} alt={cat.name} />
           <p>{cat.name}</p>
         </div>
