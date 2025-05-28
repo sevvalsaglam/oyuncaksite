@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect }  from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleFavorite } from '../features/favorite/favoriteSlice';
@@ -14,14 +14,20 @@ const ProductDetail = () => {
   const products = useSelector((state) => state.products.items);
   const favorites = useSelector((state) => state.favorites.items);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [id]);
+
   const product = products.find((p) => p.id === parseInt(id));
   if (!product) return <p>Ürün bulunamadı.</p>;
 
   const isFavorite = favorites.some((f) => f.id === product.id);
 
   const related = products.filter(
-    (p) => p.category === product.category && p.id !== product.id
+    (p) => p.category?.id === product.category?.id && p.id !== product.id
   );
+  
+  
 
   const handleFavorite = () => {
     dispatch(toggleFavorite(product));
@@ -41,7 +47,8 @@ const ProductDetail = () => {
         <img src={product.image} alt={product.name} />
         <div className="product-info">
           <h2>{product.name}</h2>
-          <p className="category">{product.category}</p>
+          <p className="category">{product.category?.name || "Kategori Yok"}</p>
+
 
           <div className="rating-stars">
             {[...Array(filledStars)].map((_, i) => (

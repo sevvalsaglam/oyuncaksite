@@ -1,13 +1,14 @@
+// src/features/product/productSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 
-export const fetchProducts = createAsyncThunk(
-  'products/fetchProducts',
-  async () => {
-    const response = await axios.get('/products.json');
-    return response.data;
+// Asenkron veri çekme
+export const fetchProducts = createAsyncThunk('products/fetchProducts', async () => {
+  const response = await fetch('http://localhost:8080/api/products');
+  if (!response.ok) {
+    throw new Error('Sunucudan veri alınamadı');
   }
-);
+  return await response.json();
+});
 
 const productSlice = createSlice({
   name: 'products',

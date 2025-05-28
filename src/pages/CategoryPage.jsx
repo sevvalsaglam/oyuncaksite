@@ -11,7 +11,8 @@ const CategoriesPage = () => {
 
   const products = useSelector((state) => state.products.items);
   const filtered = selectedCategory
-    ? products.filter((p) => p.category === selectedCategory)
+  ? products.filter((p) => p.category?.name === selectedCategory)
+
     : products;
 
   const productSectionRef = useRef();

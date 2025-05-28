@@ -4,7 +4,6 @@ import './ProductCard.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleFavorite } from '../features/favorite/favoriteSlice';
 import { addToCart } from '../features/cart/cartSlice';
-
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { FiShoppingCart } from 'react-icons/fi';
 
@@ -28,7 +27,9 @@ const ProductCard = ({ product }) => {
       <img src={product.image} alt={product.name} />
       <div className="card-body">
         <h4>{product.name}</h4>
-        <p className="category">{product.category}</p>
+        <p className="category">
+          {product.category?.name || "Kategori Yok"}
+        </p>
         <p className="price">{product.price.toFixed(2)} ₺</p>
         <div className="card-actions">
           <span onClick={handleFavoriteClick} className="fav-icon">

@@ -20,7 +20,6 @@ const Register = () => {
       return;
     }
 
-    // TODO: Backend'e kayıt gönder
     console.log('Register:', form);
     alert('Kayıt başarılı (mock)');
   };
