@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  increment,
-  decrement,
+  fetchCart,
+  addToCart,
   removeFromCart,
   clearCart,
 } from '../features/cart/cartSlice';
@@ -11,42 +11,72 @@ import { FiTrash } from 'react-icons/fi';
 
 const Cart = () => {
   const dispatch = useDispatch();
+  const userId = 1; // Giriş yapan kullanıcının ID'si, oturumdan alınabilir
   const cartItems = useSelector(state => state.cart.items);
+  console.log("Sepetteki ürünler:", cartItems);  
+  const status = useSelector(state => state.cart.status);
 
-  const total = cartItems.reduce(
-    (sum, item) => sum + (item.product?.price || 0) * item.quantity,
-    0
-  );
-  
+  useEffect(() => {
+    dispatch(fetchCart(userId));
+  }, [dispatch]);
 
+  const handleIncrement = (item) => {
+    dispatch(addToCart({
+      userId,
+      productId: item.product.id,
+      quantity: item.quantity + 1
+    }));
+  };
+
+  const handleDecrement = (item) => {
+    if (item.quantity > 1) {
+      dispatch(addToCart({
+        userId,
+        productId: item.product.id,
+        quantity: item.quantity - 1
+      }));
+    }
+  };
+
+  const handleRemove = (itemId) => {
+    dispatch(removeFromCart(itemId));
+  };
+
+  const total = Array.isArray(cartItems)
+  ? cartItems.reduce((sum, item) => sum + (item.product?.price || 0) * item.quantity, 0)
+  : 0;
+
+
+
+  if (status === 'loading') return <p>Sepet yükleniyor...</p>;
   if (cartItems.length === 0) return <p>Sepetiniz boş.</p>;
 
   return (
     <div className="cart-container">
       <h2>Sepet</h2>
-      {cartItems.filter(item => item.product).map(({ product, quantity }) => (
-        <div className="cart-item" key={product.id}>
-          <img src={product.image} alt={product.name} />
+      {cartItems.map((item) => (
+        <div className="cart-item" key={item.id}>
+          <img src={item.product.image} alt={item.product.name} />
           <div className="info">
-            <h4>{product.name}</h4>
-            <p>{product.price.toFixed(2)} ₺</p>
+            <h4>{item.product.name}</h4>
+            <p>{item.product.price.toFixed(2)} ₺</p>
           </div>
           <div className="quantity">
-            <button onClick={() => dispatch(decrement(product.id))}>−</button>
-            <span>{quantity}</span>
-            <button onClick={() => dispatch(increment(product.id))}>+</button>
+            <button onClick={() => handleDecrement(item)}>−</button>
+            <span>{item.quantity}</span>
+            <button onClick={() => handleIncrement(item)}>+</button>
           </div>
           <div className="remove">
-  <button onClick={() => dispatch(removeFromCart(product.id))}>
-    <FiTrash />
-  </button>
-</div>
+            <button onClick={() => handleRemove(item.id)}>
+              <FiTrash />
+            </button>
+          </div>
         </div>
       ))}
 
       <div className="cart-summary">
         <p><strong>Toplam:</strong> {total.toFixed(2)} ₺</p>
-        <button className="btn secondary" onClick={() => dispatch(clearCart())}>
+        <button className="btn secondary" onClick={() => dispatch(clearCart(userId))}>
           Sepeti Boşalt
         </button>
         <button className="btn primary">Ödeme Yap</button>

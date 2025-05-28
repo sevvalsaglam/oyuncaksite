@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './ProductCard.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleFavorite } from '../features/favorite/favoriteSlice';
+import { toggleFavoriteAsync } from '../features/favorite/favoriteSlice'; // async thunk
 import { addToCart } from '../features/cart/cartSlice';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { FiShoppingCart } from 'react-icons/fi';
@@ -10,16 +10,31 @@ import { FiShoppingCart } from 'react-icons/fi';
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.favorites.items);
-  const isFavorite = favorites.some((item) => item.id === product.id);
+  const currentUser = useSelector((state) => state.user.currentUser);
+  const isFavorite = favorites.some((item) => item.product?.id === product.id);
 
   const handleFavoriteClick = (e) => {
     e.preventDefault();
-    dispatch(toggleFavorite(product));
+    if (!currentUser) {
+      alert('Favorilere eklemek için giriş yapmalısınız.');
+      return;
+    }
+
+    dispatch(toggleFavoriteAsync({ userId: currentUser.id, product }));
   };
 
   const handleAddToCart = (e) => {
     e.preventDefault();
-    dispatch(addToCart(product));
+    if (!currentUser) {
+      alert('Sepete eklemek için giriş yapmalısınız.');
+      return;
+    }
+
+    dispatch(addToCart({
+      userId: currentUser.id,
+      productId: product.id,
+      quantity: 1
+    }));
   };
 
   return (

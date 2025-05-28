@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { registerUser } from '../features/user/registerSlice';
 import { Link } from 'react-router-dom';
 import './Auth.css';
 
@@ -8,6 +10,9 @@ const Register = () => {
     email: '',
     password: '',
   });
+
+  const dispatch = useDispatch();
+  const { status, error } = useSelector((state) => state.user);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -20,14 +25,14 @@ const Register = () => {
       return;
     }
 
-    console.log('Register:', form);
-    alert('Kayıt başarılı (mock)');
+    dispatch(registerUser(form));
   };
 
   return (
     <div className="auth-container">
       <h2>Kayıt Ol</h2>
-      <img className="loginlogo" src='public/background/25.png'></img>
+      <img className="loginlogo" src="/background/25.png" alt="Kayıt" />
+
       <form onSubmit={handleRegister}>
         <input
           type="text"
@@ -50,8 +55,14 @@ const Register = () => {
           value={form.password}
           onChange={handleChange}
         />
-        <button type="submit" className="btn primary">Kayıt Ol</button>
+        <button type="submit" className="btn primary">
+          Kayıt Ol
+        </button>
       </form>
+
+      {status === 'loading' && <p>Kayıt olunuyor...</p>}
+      {status === 'succeeded' && <p>Kayıt başarılı!</p>}
+      {status === 'failed' && <p>Hata: {error}</p>}
 
       <p>
         Zaten hesabınız var mı? <Link to="/login">Giriş Yap</Link>

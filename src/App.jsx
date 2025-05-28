@@ -12,6 +12,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Educative from './pages/Educative';
 import CategoryPage from './pages/CategoryPage';
+import UserAccount from './pages/UserAccount';
 
 const App = () => {
   
@@ -45,6 +46,7 @@ const App = () => {
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/account" element={<UserAccount />} />
           <Route path="/register" element={<Register />} />
           <Route path="/educative" element={<Educative />} />
         </Routes>

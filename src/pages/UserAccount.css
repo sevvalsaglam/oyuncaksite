@@ -1,0 +1,53 @@
+.user-account {
+    padding: 40px;
+    max-width: 600px;
+    margin: auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  }
+  
+  .user-account h2 {
+    text-align: center;
+    margin-bottom: 24px;
+    color: #2d3436;
+  }
+  
+  .user-info {
+    background: #f1f2f6;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+  }
+  
+  .user-info p {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  
+  .user-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .user-actions .btn {
+    padding: 12px;
+    font-weight: bold;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  .btn.secondary {
+    background-color: #dfe6e9;
+    color: #2d3436;
+  }
+  
+  .btn.danger {
+    background-color: #ff6b6b;
+    color: white;
+  }
+  

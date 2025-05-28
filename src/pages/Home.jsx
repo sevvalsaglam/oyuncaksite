@@ -3,11 +3,13 @@ import HomeCategoryList from '../components/HomeCategoryList'; // import et
 import ProductList from '../components/ProductList';
 import Banner from '../components/Banner';
 import './Home.css';
+import HomeBlogSection from '../components/HomeBlogSection';
 
 const Home = () => {
   return (
     <div className="home-container">
       <Banner type="hero" />
+      <HomeBlogSection />
       <section>
         <h2>Kategoriler</h2>
         <HomeCategoryList />
