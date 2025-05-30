@@ -30,7 +30,6 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-
 const registerSlice = createSlice({
   name: 'user',
   initialState: {
@@ -54,7 +53,6 @@ const registerSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // Register
       .addCase(registerUser.pending, (state) => {
         state.status = 'loading';
       })
@@ -68,7 +66,6 @@ const registerSlice = createSlice({
         state.error = action.error.message;
       })
 
-      // Login
       .addCase(loginUser.pending, (state) => {
         state.status = 'loading';
       })
@@ -81,14 +78,7 @@ const registerSlice = createSlice({
         state.status = 'failed';
         state.error = action.error.message;
       });
-  },
-  loadUserFromStorage: (state) => {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      state.currentUser = JSON.parse(storedUser);
-    }
   }
-  
 });
 
 export const { logoutUser, loadUserFromStorage } = registerSlice.actions;

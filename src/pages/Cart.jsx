@@ -11,14 +11,17 @@ import { FiTrash } from 'react-icons/fi';
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const userId = 1; // Giriş yapan kullanıcının ID'si, oturumdan alınabilir
-  const cartItems = useSelector(state => state.cart.items);
-  console.log("Sepetteki ürünler:", cartItems);  
+  const currentUser = useSelector((state) => state.user.currentUser);
+  const userId = currentUser?.id;
+
+  const cartItems = useSelector((state) => state.cart.items);
   const status = useSelector(state => state.cart.status);
 
   useEffect(() => {
-    dispatch(fetchCart(userId));
-  }, [dispatch]);
+    if (userId) {
+      dispatch(fetchCart(userId));
+    }
+  }, [dispatch, userId]);
 
   const handleIncrement = (item) => {
     dispatch(addToCart({

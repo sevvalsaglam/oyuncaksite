@@ -6,24 +6,32 @@ import { AiOutlineHeart } from 'react-icons/ai';
 import { useSelector } from 'react-redux';
 import { AiOutlineHome, AiOutlineAppstore } from 'react-icons/ai';
 
-
-
 const Header = () => {
   const navigate = useNavigate();
   const cartItems = useSelector((state) => state.cart.items);
+  const currentUser = useSelector((state) => state.user.currentUser);
   const cartCount = cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0);
+
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearchSubmit = (e) => {
+    if (e.key === 'Enter' && searchQuery.trim()) {
+      navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
+
+  const handleProfileClick = () => {
+    if (currentUser) {
+      navigate('/account');
+    } else {
+      navigate('/login');
+    }
+  };
 
   const handleEducativeClick = () => {
     navigate('/educative');
   };
 
-  const [searchQuery, setSearchQuery] = useState('');
-
-const handleSearchSubmit = (e) => {
-  if (e.key === 'Enter' && searchQuery.trim()) {
-    navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
-  }
-};
   return (
     <header className="header">
       <div className="header-left">
@@ -41,36 +49,38 @@ const handleSearchSubmit = (e) => {
         <div className="search-wrapper">
           <FiSearch className="search-icon" />
           <input
-  type="text"
-  placeholder="Ürün ara..."
-  className="search-bar"
-  value={searchQuery}
-  onChange={(e) => setSearchQuery(e.target.value)}
-  onKeyDown={handleSearchSubmit}
-/>
-
+            type="text"
+            placeholder="Ürün ara..."
+            className="search-bar"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyDown={handleSearchSubmit}
+          />
         </div>
       </div>
 
       <div className="header-right">
-      <div className="mobile-nav-icons">
-  <Link to="/" title="Ana Sayfa">
-    <AiOutlineHome />
-  </Link>
-  <Link to="/categories" title="Kategoriler">
-    <AiOutlineAppstore />
-  </Link>
-</div>
+        <div className="mobile-nav-icons">
+          <Link to="/" title="Ana Sayfa">
+            <AiOutlineHome />
+          </Link>
+          <Link to="/categories" title="Kategoriler">
+            <AiOutlineAppstore />
+          </Link>
+        </div>
+
         <Link to="/favorites" title="Favoriler">
           <AiOutlineHeart />
         </Link>
+
         <Link to="/cart" title="Sepet" className="cart-link">
           <FiShoppingCart />
           {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
         </Link>
-        <Link to="/login" title="Profil">
-          <FiUser />
-        </Link>
+
+        <span onClick={handleProfileClick} title="Profil">
+          <FiUser style={{ cursor: 'pointer' }} />
+        </span>
       </div>
 
       <button className="educative-button" onClick={handleEducativeClick}>
