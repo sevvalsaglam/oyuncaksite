@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
 
 import Header from './components/Header';
@@ -13,10 +14,15 @@ import Register from './pages/Register';
 import Educative from './pages/Educative';
 import CategoryPage from './pages/CategoryPage';
 import UserAccount from './pages/UserAccount';
+import { loadUserFromStorage } from './features/user/registerSlice';
+import { ToastContainer } from 'react-toastify';
+
 
 const App = () => {
   
+  const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(loadUserFromStorage());
     const wrapper = document.getElementById('bg-wrapper');
 
     if (!wrapper) return;
@@ -32,7 +38,7 @@ const App = () => {
       img.style.setProperty('--random-angle', Math.random().toFixed(2));
       wrapper.appendChild(img);
     });
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
@@ -51,6 +57,15 @@ const App = () => {
           <Route path="/educative" element={<Educative />} />
         </Routes>
       </main>
+      <ToastContainer
+  position="top-center"
+  autoClose={2000}
+  hideProgressBar
+  newestOnTop
+  closeOnClick
+  pauseOnHover
+  theme="colored"
+/>
       <Footer />
     </>
   );

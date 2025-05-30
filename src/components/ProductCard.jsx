@@ -2,21 +2,25 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './ProductCard.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleFavoriteAsync } from '../features/favorite/favoriteSlice'; // async thunk
+import { toggleFavoriteAsync } from '../features/favorite/favoriteSlice';
 import { addToCart } from '../features/cart/cartSlice';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { FiShoppingCart } from 'react-icons/fi';
+import { toast } from 'react-toastify';
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.favorites.items);
   const currentUser = useSelector((state) => state.user.currentUser);
-  const isFavorite = favorites.some((item) => item.product?.id === product.id);
+
+  const isFavorite = favorites.some(
+    (item) => item.product?.id === product.id || item.id === product.id
+  );
 
   const handleFavoriteClick = (e) => {
     e.preventDefault();
     if (!currentUser) {
-      alert('Favorilere eklemek için giriş yapmalısınız.');
+      toast.warning('Favorilere eklemek için giriş yapmalısınız!');
       return;
     }
 
@@ -26,14 +30,14 @@ const ProductCard = ({ product }) => {
   const handleAddToCart = (e) => {
     e.preventDefault();
     if (!currentUser) {
-      alert('Sepete eklemek için giriş yapmalısınız.');
+      toast.warning('Sepete eklemek için giriş yapmalısınız!');
       return;
     }
 
     dispatch(addToCart({
       userId: currentUser.id,
       productId: product.id,
-      quantity: 1
+      quantity: 1,
     }));
   };
 
@@ -43,7 +47,7 @@ const ProductCard = ({ product }) => {
       <div className="card-body">
         <h4>{product.name}</h4>
         <p className="category">
-          {product.category?.name || "Kategori Yok"}
+          {product.category?.name || 'Kategori Yok'}
         </p>
         <p className="price">{product.price.toFixed(2)} ₺</p>
         <div className="card-actions">
