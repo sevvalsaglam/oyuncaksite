@@ -16,6 +16,7 @@ import CategoryPage from './pages/CategoryPage';
 import UserAccount from './pages/UserAccount';
 import { loadUserFromStorage } from './features/user/registerSlice';
 import { ToastContainer } from 'react-toastify';
+import SearchResults from './pages/SearchResults';
 
 
 const App = () => {
@@ -55,6 +56,8 @@ const App = () => {
           <Route path="/account" element={<UserAccount />} />
           <Route path="/register" element={<Register />} />
           <Route path="/educative" element={<Educative />} />
+          <Route path="/search" element={<SearchResults />} />
+
         </Routes>
       </main>
       <ToastContainer
